@@ -1,0 +1,12 @@
+# Layout of this directory:
+#   *.csv          aggregated `*_summary.csv` files (one row per metric, from
+#                  training/eval runs) + the published `paper_*.csv` reference
+#                  numbers — the canonical "final metrics".
+#   plots/         every generated figure (master bar/radial, risk frontier,
+#                  sweep/quantile/atari PNGs).
+#   sweeps/        archived sweep/study CSVs.
+#   reform_a/      a self-contained reformation study (CSVs + COMPARISON.md).
+#
+# Raw per-UE evaluation CSVs are too large to track; everything else is checked
+# in.
+/*_raw.csv

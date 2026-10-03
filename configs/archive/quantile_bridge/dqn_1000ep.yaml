@@ -1,0 +1,57 @@
+# Quantile-bridge study: DQN anchor at the SAME budget as the QR low-N runs
+# (1000ep x 3seed) so "N=1 QR-DQN ~= DQN" is apples-to-apples (the canonical
+# DQN is 2000ep x 5seed). Same V3 backbone; DQN uses MSE loss + hard target
+# update (tau=1.0) -> regresses the MEAN of the bootstrapped target.
+
+system:
+  tx_power: 25
+  noise_level: -101
+  receiver_sensitivity: -95
+
+simulation:
+  total_sim_time: 300
+  time_step: 0.01
+  ue_number: 1000
+  bs_number: 7
+
+agent:
+  type: "dqn"
+  hidden_dims: [256, 256]
+  lr: 1.0e-4
+  gamma: 0.9
+  tau: 1.0
+  target_update_freq: 1000
+  buffer_size: 100000
+  batch_size: 256
+  train_freq: 1
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_mult: 0.995
+  num_episodes: 1000
+
+benchmark:
+  num_seeds: 3
+  results_dir: "results/benchmarks"
+  env_type: "ltm"
+
+ho_reward:
+  alpha_hof: 0.1
+  alpha_ho: 0.8
+  alpha_pp: 0.9
+
+ho_state:
+  moving_average_window: 50
+
+ho_prep:
+  periodicity_rsrp_measurement: 0.02
+  average_rsrp_measurement_nl1: 10
+  kl3: 8
+  preparation_power_offset: -3
+  preparation_time: 0.04
+  exec_power_offset: 3.0
+  max_number_prepared_bs: 5
+
+paths:
+  channel_data_directory: "data/ChannelGains"
+  precomputed_data_directory: "data/Precomputed"
+  dataset_subdir: "no_ris"

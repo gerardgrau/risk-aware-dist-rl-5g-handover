@@ -1,0 +1,66 @@
+# ADAPTIVE alpha-search at FIXED effective k=13 on the V3 headline backbone
+# (h256, tf=1, kappa=0.25). k held at 13 via N=floor(13/alpha) so
+# ceil(N*alpha)=13 -> identical 13-output head; only risk level (quantile
+# placement over [0,alpha]) changes.
+# This file = alpha=0.40 (N=32, ceil(32*0.40)=13). REFINEMENT probe: the
+# 0.3/0.5/0.7 bracket put an interior peak at alpha~0.44 (0.30=1083.35+-5.04,
+# 0.50=1084.57+-1.35, 0.70=1079.68+-2.73). This checks whether the optimum sits
+# just below 0.5. Budget: 3 seeds x 1000 ep.
+
+system:
+  tx_power: 25
+  noise_level: -101
+  receiver_sensitivity: -95
+
+simulation:
+  total_sim_time: 300
+  time_step: 0.01
+  ue_number: 1000
+  bs_number: 7
+
+agent:
+  type: "qrdqn"
+  hidden_dims: [256, 256]
+  lr: 1.0e-4
+  gamma: 0.9
+  tau: 0.01
+  buffer_size: 100000
+  batch_size: 256
+  train_freq: 1
+  num_quantiles: 32
+  quantile_mode: "midpoint"
+  risk_type: "cvar"
+  risk_fraction: 0.40
+  truncate_upper_quantiles: true
+  kappa: 0.25
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_mult: 0.995
+  num_episodes: 1000
+
+benchmark:
+  num_seeds: 3
+  results_dir: "results/benchmarks"
+  env_type: "ltm"
+
+ho_reward:
+  alpha_hof: 0.1
+  alpha_ho: 0.8
+  alpha_pp: 0.9
+
+ho_state:
+  moving_average_window: 50
+
+ho_prep:
+  periodicity_rsrp_measurement: 0.02
+  average_rsrp_measurement_nl1: 10
+  kl3: 8
+  preparation_power_offset: -3
+  preparation_time: 0.04
+  exec_power_offset: 3.0
+  max_number_prepared_bs: 5
+
+paths:
+  channel_data_directory: "data/ChannelGains"
+  precomputed_data_directory: "data/Precomputed"
+  dataset_subdir: "no_ris"

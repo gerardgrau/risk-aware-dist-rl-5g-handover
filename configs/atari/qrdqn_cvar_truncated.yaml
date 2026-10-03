@@ -1,0 +1,27 @@
+# QR-DQN on Atari with CVaR(0.1) and upper-quantile truncation: only the
+# bottom-k = 5 quantiles are learned; the network never represents the
+# top 90% of the return distribution. Tests the hypothesis that throwing
+# away the unused upper lobe concentrates capacity where it matters.
+
+agent:
+  type: "qrdqn"
+  trunk_type: "cnn"
+  cnn_feature_dim: 512
+  lr: 2.5e-4
+  gamma: 0.99
+  tau: 1.0
+  target_update_freq: 8000
+  buffer_size: 100000
+  batch_size: 32
+  num_quantiles: 50
+  quantile_mode: "midpoint"
+  risk_type: "cvar"
+  risk_fraction: 0.1
+  truncate_upper_quantiles: true
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay_frames: 1000000
+  train_freq: 4
+  learn_start: 5000
+  clip_reward: true
+  kappa: 1.0
