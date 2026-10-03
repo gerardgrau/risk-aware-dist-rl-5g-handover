@@ -1,0 +1,65 @@
+[
+  {
+    "alpha": 0.25,
+    "r": 1.5,
+    "status": "SUCCESS",
+    "duration_seconds": 9425.381642103195,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_1_softstep_grid_a0.25_r1.5/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.1,
+    "r": 3.0,
+    "status": "SUCCESS",
+    "duration_seconds": 9661.27546286583,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_2_softstep_grid_a0.10_r3.0/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.1,
+    "r": 2.0,
+    "status": "SUCCESS",
+    "duration_seconds": 9957.99726319313,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_3_softstep_grid_a0.10_r2.0/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.1,
+    "r": 1.5,
+    "status": "SUCCESS",
+    "duration_seconds": 9979.196898460388,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_1_softstep_grid_a0.10_r1.5/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.25,
+    "r": 2.0,
+    "status": "SUCCESS",
+    "duration_seconds": 9590.409449577332,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_4_softstep_grid_a0.25_r2.0/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.25,
+    "r": 3.0,
+    "status": "SUCCESS",
+    "duration_seconds": 10036.002375125885,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_5_softstep_grid_a0.25_r3.0/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.5,
+    "r": 2.0,
+    "status": "SUCCESS",
+    "duration_seconds": 9868.356964111328,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_7_softstep_grid_a0.50_r2.0/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.5,
+    "r": 1.5,
+    "status": "SUCCESS",
+    "duration_seconds": 9936.117661714554,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_6_softstep_grid_a0.50_r1.5/eval/qrdqn_summary_seed42.csv"
+  },
+  {
+    "alpha": 0.5,
+    "r": 3.0,
+    "status": "SUCCESS",
+    "duration_seconds": 3509.5954027175903,
+    "summary_csv": "/home/gerard/Documents/UPC/42_4t-Q2/I2R/risk-aware-dist-rl-5g-handover/results/benchmarks/bmk_2026-10-04_8_softstep_grid_a0.50_r3.0/eval/qrdqn_summary_seed42.csv"
+  }
+]

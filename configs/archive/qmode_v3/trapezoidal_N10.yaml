@@ -1,0 +1,73 @@
+# Quantile-positioning study (V3 backbone), scheme 3/3: TRAPEZOIDAL.
+# Risk-neutral QR-DQN, N=10, trapezoidal rule with fixed endpoints, mean policy.
+# Predicts the N-2=8 interior quantiles; the endpoints F^-1(0)=q_min and
+# F^-1(1)=q_max are fixed a priori.
+#
+# IMPORTANT (q_max calibration): q_max must be a *conservative upper bound* on
+# the return, i.e. ABOVE the largest learned quantile -- otherwise it sits below
+# the distribution, breaks monotonicity and biases the trapezoidal mean. The
+# learned return distribution on this task spans ~19..48 (see
+# results/final_metrics/quantile_dist_midpoint.png), so the old q_max=15 was far
+# too low (below the *entire* distribution) and only handicapped trapezoidal --
+# midpoint/GL fix no endpoints, so it was NOT a shared bias. We set q_max=60
+# (safely above the observed max ~48) and keep q_min=0 (returns are non-negative;
+# a valid loose lower bound that shifts every action equally, so it does not
+# affect action selection). Otherwise identical to midpoint_N10.yaml.
+
+system:
+  tx_power: 25
+  noise_level: -101
+  receiver_sensitivity: -95
+
+simulation:
+  total_sim_time: 300
+  time_step: 0.01
+  ue_number: 1000
+  bs_number: 7
+
+agent:
+  type: "qrdqn"
+  hidden_dims: [256, 256]
+  lr: 1.0e-4
+  gamma: 0.9
+  tau: 0.01
+  buffer_size: 100000
+  batch_size: 256
+  train_freq: 1
+  num_quantiles: 10
+  quantile_mode: "trapezoidal"
+  risk_type: "mean"
+  q_min: 0.0
+  q_max: 60.0
+  kappa: 0.25
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_mult: 0.995
+  num_episodes: 1000
+
+benchmark:
+  num_seeds: 3
+  results_dir: "results/benchmarks"
+  env_type: "ltm"
+
+ho_reward:
+  alpha_hof: 0.1
+  alpha_ho: 0.8
+  alpha_pp: 0.9
+
+ho_state:
+  moving_average_window: 50
+
+ho_prep:
+  periodicity_rsrp_measurement: 0.02
+  average_rsrp_measurement_nl1: 10
+  kl3: 8
+  preparation_power_offset: -3
+  preparation_time: 0.04
+  exec_power_offset: 3.0
+  max_number_prepared_bs: 5
+
+paths:
+  channel_data_directory: "data/ChannelGains"
+  precomputed_data_directory: "data/Precomputed"
+  dataset_subdir: "no_ris"
