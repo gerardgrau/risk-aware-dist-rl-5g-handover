@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+/venv
+/venv-RL
+/.env
+/.venv/
+
+# IDEs
+/.vscode/
+/.idea/
+/.DS_Store
+
+/conductor
+
+# Local-only material — kept on disk for development, intentionally NOT published.
+# The research journal (meetings, planning, studies, experiment logs) and the
+# collaborator reference code stay private to this working copy.
+/notes/
+/docs/reference/ltm_ho_reference.py
+/docs/reference/ltm_ho_reference_matlab.txt
+/docs/CMAB for LTM HO.md
+
+# Per-run operational logs (overnight queues, parity-check stdout, etc.)
+/logs/
+
+# Presentation figures: the PNG gallery in figures/ is published; only the heavy
+# MP4 animations (~119 MB) are ignored, via figures/.gitignore (regenerate them
+# locally with the scripts in src/tools/).
+
+# LaTeX intermediate build artifacts (paper.pdf is tracked; these byproducts are not)
+/paper/*.aux
+/paper/*.log
+/paper/*.out
+/paper/*.bbl
+/paper/*.blg
+/paper/*.synctex.gz
+/paper_tmlcn/*.aux
+/paper_tmlcn/*.log
+/paper_tmlcn/*.out
+/paper_tmlcn/*.bbl
+/paper_tmlcn/*.blg
+/paper_tmlcn/*.synctex.gz
+
+# Sweep temporary configs
+/configs/temp_sweep/
+
+

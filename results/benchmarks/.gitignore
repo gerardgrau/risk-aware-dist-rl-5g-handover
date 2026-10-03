@@ -1,0 +1,7 @@
+# Benchmark logs and plots
+/*.csv
+/*.png
+/*.pdf
+/*.log
+# Ignore subdirectories (individual run folders)
+/*/

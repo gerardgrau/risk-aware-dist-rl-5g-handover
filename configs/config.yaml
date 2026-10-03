@@ -1,0 +1,54 @@
+# Global Configuration for Distributional RL for LTM Handover
+
+system:
+  tx_power: 25                # Aligned with CMAB paper Table I
+  noise_level: -174           # Raw linear floor (matches legacy_simulation)
+  receiver_sensitivity: -95   # dBm
+
+simulation:
+  total_sim_time: 300         # seconds (Aligned with CMAP paper)
+  time_step: 0.01             # 10 ms (10e-3)
+  ue_number: 2000             # Training dataset (ChannelGains_v2)
+  bs_number: 7                # Set to 7 for hexagonal cells
+
+agent:
+  type: "dqn"                 # "dqn" or "qrdqn"
+  hidden_dims: [128, 128]
+  lr: 1e-3
+  gamma: 0.9
+  tau: 0.01
+  buffer_size: 100000
+  batch_size: 256
+  train_freq: 4               # 1 gradient step per 4 env steps (Nature-DQN convention)
+  num_quantiles: 25           # Only for qrdqn
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_mult: 0.995         # Exponential decay per episode
+  num_episodes: 500
+
+benchmark:
+  num_seeds: 2                # 2 seeds for definitive results
+  results_dir: "results/benchmarks"      # Directory for benchmark logs
+  env_type: "ltm"             # "ltm" or "atari" (ale_py)
+
+ho_reward:
+  alpha_hof: 0.1
+  alpha_ho: 0.8
+  alpha_pp: 0.9
+
+ho_state:
+  moving_average_window: 50
+
+ho_prep:
+  periodicity_rsrp_measurement: 0.02    # 20 ms
+  average_rsrp_measurement_nl1: 10      # FIR filter length
+  kl3: 8                                # L3 IIR constant
+  preparation_power_offset: -3          # dB
+  preparation_time: 0.04                # 40 ms
+  exec_power_offset: 3.0                  # dB (Table II)
+  max_number_prepared_bs: 5             # matches physics.py + the reference implementation (CLAUDE.md: prefer reference over paper Table II); used by the retroactive res-reservation/prep metric
+
+paths:
+  channel_data_directory: "data/ChannelGains_v2"
+  precomputed_data_directory: "data/Precomputed_v2"
+  dataset_subdir: "no_ris"      # "no_ris" (Baseline) or "with_ris" (Proposal)

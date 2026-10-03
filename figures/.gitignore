@@ -1,0 +1,7 @@
+# This folder is the published, curated figure gallery for the talk and paper.
+#
+# The PNGs are tracked. The animations are NOT: they are ~119 MB of MP4 and are
+# fully regenerable from the scripts in src/tools/ (pass --animate, or run the
+# gen_*_set.py helpers — see README.md "Regenerating"). Keeping them out of the
+# repo avoids permanently bloating git history with derived video.
+*.mp4

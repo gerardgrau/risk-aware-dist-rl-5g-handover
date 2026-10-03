@@ -1,0 +1,13 @@
+# Ignore heavy channel datasets and precomputed arrays (>50 GB)
+/ChannelGains/
+/ChannelGains_v2/
+/Precomputed/
+/Precomputed_v2/
+/train
+/test
+/5g_advanced_ltm_channel_trajectories
+/5g_advanced_ltm_channel_trajectories/
+*.rar
+*.zip
+*.zip.part*
+*.tar.gz
